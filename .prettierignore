@@ -9,7 +9,6 @@
 # Logs
 /logs
 *.log
-*.husky
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
