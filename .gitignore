@@ -1,3 +1,31 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@devMatheus-Cunha 
+vedovelli
+/
+curso-javascript-testes-modulo-2
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+curso-javascript-testes-modulo-2/.gitignore
+@vedovelli
+vedovelli Init
+Latest commit 6fbc628 on 19 Sep 2020
+ History
+ 1 contributor
+90 lines (64 sloc)  1.22 KB
+  
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
@@ -54,7 +82,7 @@ typings/
 *.tgz
 
 # Yarn Integrity file
-.yarn-integrity
+# .yarn-integrity
 
 # dotenv environment variables file
 .env
@@ -88,3 +116,16 @@ sw.*
 
 # Vim swap files
 *.swp
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
