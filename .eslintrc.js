@@ -27,5 +27,6 @@ module.exports = {
         'require-await': 'off',
         'require-prop-type-constructor': 'off',
         'require-default-prop': 'off',
+        'prettier/prettier': 'off',
     },
 }

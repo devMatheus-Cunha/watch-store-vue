@@ -2,8 +2,7 @@ export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         title: 'watch-store-vue',
-        meta: [
-            {
+        meta: [{
                 charset: 'utf-8',
             },
             {
@@ -20,20 +19,18 @@ export default {
                 content: 'telephone=no',
             },
         ],
-        link: [
-            {
-                rel: 'icon',
-                type: 'image/x-icon',
-                href: '/favicon.ico',
-            },
-        ],
+        link: [{
+            rel: 'icon',
+            type: 'image/x-icon',
+            href: '/favicon.ico',
+        }, ],
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [],
+    plugins: ['@/plugins/miragejs', '@/plugins/cart'],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: false,

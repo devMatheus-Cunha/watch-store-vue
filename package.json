@@ -11,8 +11,6 @@
         "lint:prettier": "prettier --check .",
         "lint": "yarn lint:js && yarn lint:prettier",
         "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
-        "prepare": "husky install",
-        "pretest": "./node_modules/.bin/eslint --ignore-path .gitignore . --fix",
         "test": "jest"
     },
     "lint-staged": {
@@ -45,14 +43,9 @@
         "eslint-plugin-vue": "^8.2.0",
         "jest": "^27.4.4",
         "lint-staged": "^12.1.2",
-        "mirage.js": "^1.0.0",
+        "miragejs": "^0.1.45",
         "postcss": "^8.4.4",
         "prettier": "^2.5.1",
         "vue-jest": "^3.0.4"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
     }
 }
