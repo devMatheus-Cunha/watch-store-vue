@@ -3,7 +3,7 @@
         <header>
             <div class="container mx-auto px-6 py-3">
                 <div class="flex items-center justify-between">
-                    <divddddd
+                    <div
                         class="hidden w-full text-gray-600 md:flex md:items-center"
                     >
                         <svg
@@ -26,7 +26,7 @@
                             />
                         </svg>
                         <span class="mx-1 text-sm">NY</span>
-                    </divddddd>
+                    </div>
                     <div
                         class="w-full text-gray-700 md:text-center text-2xl font-semibold"
                     >
@@ -103,7 +103,7 @@
                 </nav>
             </div>
         </header>
-        <cart :products="products" :is-open="isCartOpen" @close="toggleCart" />
+        <cart />
         <nuxt />
         <footer class="bg-gray-200">
             <div

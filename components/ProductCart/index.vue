@@ -2,7 +2,7 @@
     <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
         <div
             class="flex items-end justify-end h-56 w-full bg-cover"
-            :style="`background-image: url('${product.image}');`"
+            :style="`background-color: url('https://cdn.siroko.com/s/files/1/1220/6874/products/beat-mundaka-lateral/1200x/crop_center.jpg?v=1635209598');`"
         >
             <button
                 class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
@@ -30,3 +30,9 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    name: 'ProductCard',
+}
+</script>

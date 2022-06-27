@@ -7,7 +7,7 @@
                 :alt="product.title"
             />
             <div class="mx-3">
-                <h3 class="text-sm text-gray-600">{{ product.title }}</h3>
+                <h3 class="text-sm text-gray-600">Rolex</h3>
                 <button
                     data-testid="remove-button"
                     @click="$cart.removeProduct(product.id)"
@@ -59,23 +59,12 @@
                 </div>
             </div>
         </div>
-        <span class="text-gray-600">{{ product.price }}</span>
+        <span class="text-gray-600">100</span>
     </div>
 </template>
 
 <script>
 export default {
-    name: "CartItem",
-    props: {
-        product: {
-            type: Object,
-            required: true,
-        },
-    },
-    data() {
-        return {
-            quantity: 1,
-        }
-    },
+    name: 'CartItem',
 }
 </script>
