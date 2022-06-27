@@ -11,7 +11,7 @@
             <div
                 class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6"
             >
-                <product-card v-for="(item, index) in 8" :key="index" />
+                <product-card v-for="product in products" :key="product.id" />
             </div>
         </div>
         <!-- <h3 class=":text-center text-2x1">{{ errorMessage }}</h3> -->
@@ -20,8 +20,14 @@
 
 <script>
 import { ProductCard, Search } from '../components'
+import products from '@/mocks/products.json'
 
 export default {
     components: { ProductCard, Search },
+    computed: {
+        products() {
+            return products
+        },
+    },
 }
 </script>
