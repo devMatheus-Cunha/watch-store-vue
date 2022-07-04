@@ -6,17 +6,12 @@
     >
         <div class="flex items-center justify-between">
             <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
-            <button
-                v-if="hasProducts"
-                data-testid="clear-cart-button"
-                @click="$cart.clearProducts()"
-            >
+            <button v-if="hasProducts" data-testid="clear-cart-button">
                 Clear cart
             </button>
             <button
                 data-testid="close-button"
                 class="text-gray-600 focus:outline-none"
-                @click="close"
             >
                 <svg
                     class="h-5 w-5"
@@ -59,7 +54,7 @@
 </template>
 
 <script>
-import CartItem from '@/components/CartItem'
+import CartItem from '@/components/CartItem';
 export default {
     components: { CartItem },
     props: {
@@ -70,19 +65,19 @@ export default {
         products: {
             type: Array,
             default: () => {
-                return []
+                return [];
             },
         },
     },
     computed: {
         hasProducts() {
-            return this.products.length > 0
+            return this.products.length > 0;
         },
     },
     methods: {
         close() {
-            this.$emit('close')
+            this.$emit('close');
         },
     },
-}
+};
 </script>
