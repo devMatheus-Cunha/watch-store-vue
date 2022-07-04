@@ -1,20 +1,26 @@
-/* eslint-disable prettier/prettier */
-import {
-    Server
-} from 'miragejs'
-import products from '@/mocks/products.json'
+import { Server } from 'miragejs';
+import factories from './factories';
+import fixtures from './fixtures';
+import routes from './routes';
+import models from './models';
+import seeds from './seeds';
 
-export const makeServer = ({
-    environment = 'development'
-} = {}) => {
-    return new Server({
-        environment,
-        routes() {
-            this.namespace = 'api';
+const config = environment => {
+  const config = {
+    environment,
+    factories,
+    models,
+    routes,
+    seeds,
+  };
 
-            this.get('products', () => ({
-                products,
-            }))
-        },
-    })
+  if (Object.keys(fixtures).length) {
+    config.fixtures = fixtures;
+  }
+
+  return config;
+};
+
+export function makeServer({ environment = 'development' } = {}) {
+  return new Server(config(environment));
 }
