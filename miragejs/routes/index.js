@@ -15,9 +15,9 @@ export default function routes() {
      */
     this.resource('users');
     this.resource('products');
-    this.get('products', () => {
-        return new Response(500, {}, 'O server morreu!');
-    });
+    // this.get('products', () => {
+    //     return new Response(500, {}, 'O server morreu!');
+    // });
 
     /*
      * From your component use fetch('api/messages?userId=<a user id>')
