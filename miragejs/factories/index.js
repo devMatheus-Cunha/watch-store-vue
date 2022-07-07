@@ -4,6 +4,7 @@
 
 import user from './user';
 import message from './message';
+import products from './product';
 
 /*
  * factories are contained in a single object, that's why we
@@ -11,6 +12,7 @@ import message from './message';
  * be done for all future factories
  */
 export default {
-  ...user,
-  ...message,
+    ...user,
+    ...message,
+    ...products,
 };
