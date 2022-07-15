@@ -1,5 +1,7 @@
 // Packages
-import { mount } from '@vue/test-utils'
+import {
+    mount
+} from '@vue/test-utils'
 
 // Components
 import Search from '.'
@@ -20,8 +22,23 @@ describe('Search - unit', () => {
 
         expect(wrapper.emitted().doSearch).toBeTruthy()
         expect(wrapper.emitted().doSearch.length).toBe(1)
-        expect(wrapper.emitted().doSearch[0]).toEqual([{ term }])
+        expect(wrapper.emitted().doSearch[0]).toEqual([{
+            term
+        }])
     })
 
-   
+    it('should emit search event when search input is cleared', async () => {
+        const wrapper = mount(Search)
+        const term = 'Termo para busca'
+        const input = wrapper.find('input[type="search"]')
+
+        await input.setValue(term)
+        await input.setValue('')
+
+        expect(wrapper.emitted().doSearch).toBeTruthy()
+        expect(wrapper.emitted().doSearch.length).toBe(1)
+        expect(wrapper.emitted().doSearch[0]).toEqual([{
+            term: ''
+        }])
+    })
 })
