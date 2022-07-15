@@ -1,6 +1,6 @@
 <template>
     <main class="my-8">
-        <search @doSearch="setSearchTerm" />
+        <search />
         <div v-if="errorMessage === ''" class="container mx-auto px-6">
             <h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
             <span
