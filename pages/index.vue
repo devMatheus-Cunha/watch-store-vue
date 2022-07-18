@@ -1,6 +1,6 @@
 <template>
     <main class="my-8">
-        <search />
+        <search @doSearch="setSearchTerm" />
         <div v-if="errorMessage === ''" class="container mx-auto px-6">
             <h3 class="text-gray-700 text-2xl font-medium">Wrist Watch</h3>
             <span
@@ -60,6 +60,11 @@ export default {
         } catch (error) {
             this.errorMessage = 'Problemas ao carregar a lista!';
         }
+    },
+    methods: {
+        setSearchTerm({ term }) {
+            this.searchTerm = term;
+        },
     },
 };
 </script>
