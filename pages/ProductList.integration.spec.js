@@ -1,9 +1,15 @@
+// Packages
+import Vue from 'vue'
 import {
     mount
-} from "@vue/test-utils"
+} from '@vue/test-utils'
+
 
 // Utils
 import axios from 'axios'
+import {
+    makeServer
+} from '@/miragejs/server'
 
 // Components
 import {
@@ -17,6 +23,19 @@ jest.mock('axios', () => ({
 }))
 
 describe('ProductList - integration', () => {
+    let server
+
+    beforeEach(() => {
+        server = makeServer({
+            environment: 'test'
+        })
+    })
+
+    afterEach(() => {
+        server.shutdown()
+        jest.clearAllMocks()
+    })
+
     it('should mount the component', () => {
         const wrapper = mount(ProductList)
         expect(wrapper.vm).toBeDefined()
@@ -38,12 +57,25 @@ describe('ProductList - integration', () => {
         expect(axios.get).toHaveBeenCalledWith("/api/products")
     });
 
-    // it('should mount the ProductCard component 10 times', () => {
-    //     const wrapper = mount(ProductList)
-    //     const cards = wrapper.findAllComponents(ProductCard)
+    it('should mount the ProductCard component 10 times', async () => {
+        const products = server.createList("product", 10)
+
+        axios.get.mockReturnValue(Promise.resolve({
+            data: {
+                products
+            }
+        }))
+
+        const wrapper = mount(ProductList, {
+            mocks: {
+                $axios: axios
+            }
+        })
 
 
-    //     expect(cards).toHaveLength(10)
-    // });
+        await Vue.nextTick()
+        const cards = wrapper.findAllComponents(ProductCard)
+        expect(cards).toHaveLength(10)
+    });
 
 })
