@@ -36,6 +36,21 @@ describe('ProductList - integration', () => {
         jest.clearAllMocks()
     })
 
+    const getProducts = async (quatity = 10, overrides = []) => {
+        let overrideList = []
+
+        if (overrides.length > 0) {
+            overrideList = overrides.map(override => server.create('product', override))
+        }
+        const products = [
+            ...server.createList("product", quatity),
+            ...overrideList,
+        ]
+        return {
+            products
+        }
+    }
+
     it('should mount the component', () => {
         const wrapper = mount(ProductList)
         expect(wrapper.vm).toBeDefined()
@@ -93,15 +108,15 @@ describe('ProductList - integration', () => {
 
     it('should filter the product list when a search is perfomed', async () => {
         // Arrange
-        const products = [
-            ...server.createList("product", 10),
-            server.create("product", {
-                title: "Meu relógio amado",
-            }),
-            server.create("product", {
+        const {
+            products
+        } = await getProducts(10, [{
                 title: "Meu outro relógio amado",
-            })
-        ]
+            },
+            {
+                title: "Meu outro relógio amado",
+            }
+        ])
 
         axios.get.mockReturnValue(Promise.resolve({
             data: {
@@ -130,12 +145,13 @@ describe('ProductList - integration', () => {
 
     it('should return all product list when a empty search is performed', async () => {
         // Arrange
-        const products = [
-            ...server.createList("product", 10),
-            server.create("product", {
-                title: "Meu relógio amado",
-            }),
-        ]
+        const {
+            products
+        } = await getProducts(10, [{
+                title: "Meu outro relógio amado",
+            },
+
+        ])
 
         axios.get.mockReturnValue(Promise.resolve({
             data: {
