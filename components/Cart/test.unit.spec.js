@@ -35,4 +35,14 @@ describe('Cart', () => {
 
         expect(wrapper.classes()).not.toContain('hidden')
     });
+
+    it('should display "Cart is empty" when there are no products', async () => {
+        const wrapper = mount(Cart, {
+            propsData: {
+                isOpen: true
+            }
+        })
+
+        expect(wrapper.text()).toContain('Cart is empty')
+    });
 });
