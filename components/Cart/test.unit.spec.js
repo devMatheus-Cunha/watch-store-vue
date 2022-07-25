@@ -25,4 +25,14 @@ describe('Cart', () => {
 
         expect(wrapper.classes()).toContain('hidden')
     });
+
+    it('should display the cart when prop isOpen is passed', async () => {
+        const wrapper = mount(Cart, {
+            propsData: {
+                isOpen: true
+            }
+        })
+
+        expect(wrapper.classes()).not.toContain('hidden')
+    });
 });
