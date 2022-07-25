@@ -16,6 +16,7 @@
             <button
                 data-testid="close-button"
                 class="text-gray-600 focus:outline-none"
+                @click="close"
             >
                 <svg
                     class="h-5 w-5"
@@ -65,6 +66,11 @@ export default {
         isOpen: {
             type: Boolean,
             default: false,
+        },
+    },
+    methods: {
+        close() {
+            this.$emit('close');
         },
     },
 };

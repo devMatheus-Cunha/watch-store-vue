@@ -105,7 +105,7 @@
                 </nav>
             </div>
         </header>
-        <cart :isOpen="isCartOpen" />
+        <cart :isOpen="isCartOpen" @close="toggleCart" />
         <nuxt />
         <footer class="bg-gray-200">
             <div
