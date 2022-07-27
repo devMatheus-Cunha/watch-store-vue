@@ -10,8 +10,8 @@ import {
 
 const mountCartItem = () => {
     const product = server.create('product', {
-        title: 'lindo relogio',
-        price: 22.33
+        title: 'Lindo relogío',
+        price: '22.33'
     })
     const wrapper = mount(CartItem, {
         propsData: {
@@ -45,5 +45,20 @@ describe('CartItem', () => {
         } = mountCartItem()
 
         expect(wrapper.vm).toBeDefined()
+    });
+
+    it('should display product info', () => {
+        const {
+            wrapper,
+            product: {
+                title,
+                price,
+            },
+        } = mountCartItem()
+
+        const content = wrapper.text()
+
+        expect(content).toContain(title)
+        expect(content).toContain(price)
     });
 });
