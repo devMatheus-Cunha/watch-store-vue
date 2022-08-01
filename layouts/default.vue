@@ -105,7 +105,7 @@
                 </nav>
             </div>
         </header>
-        <cart :isOpen="isCartOpen" @close="toggleCart" />
+        <cart :products="products" :isOpen="isCartOpen" @close="toggleCart" />
         <nuxt />
         <footer class="bg-gray-200">
             <div
@@ -132,9 +132,9 @@ export default {
         isCartOpen() {
             return cartState.open;
         },
-        // products() {
-        //     return this.$cart.getState().items;
-        // },
+        products() {
+            return cartState.items;
+        },
     },
     methods: {
         toggleCart() {
