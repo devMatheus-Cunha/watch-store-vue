@@ -10,6 +10,10 @@ import {
     makeServer
 } from "@/miragejs/server"
 
+import {
+    cartState
+} from "@/state"
+
 const mountProductCard = () => {
     const product = server.create("product", {
         title: "Relogio bonito",
@@ -56,18 +60,14 @@ describe('ProductCard - unit', () => {
         expect(wrapper.text()).toContain("$22.00")
     });
 
-    it('should emit the event addToCart with product obj when button gets clicked,', async () => {
+    it('should add item to cart state on butt onclick', async () => {
         const {
             wrapper,
-            product
         } = mountProductCard()
 
         await wrapper.find("button").trigger('click')
 
-        expect(wrapper.emitted().addToCart).toBeTruthy()
-        expect(wrapper.emitted().addToCart.length).toBe(1)
-        expect(wrapper.emitted().addToCart[0]).toEqual([{
-            product
-        }])
+        expect(cartState.items).toHaveLength(1)
+
     });
 });
