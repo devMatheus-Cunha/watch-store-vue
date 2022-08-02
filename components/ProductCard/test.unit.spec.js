@@ -66,8 +66,6 @@ describe('ProductCard - unit', () => {
         } = mountProductCard()
 
         await wrapper.find("button").trigger('click')
-
         expect(cartState.items).toHaveLength(1)
-
     });
 });
