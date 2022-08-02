@@ -68,4 +68,6 @@ describe('ProductCard - unit', () => {
         await wrapper.find("button").trigger('click')
         expect(cartState.items).toHaveLength(1)
     });
+
+    it.todo("should ensure product is not added to the cart twice ")
 });
