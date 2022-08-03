@@ -50,7 +50,17 @@ describe('CartManager', () => {
         expect(state.items).toHaveLength(0)
     })
 
-    it.todo('should clear products')
+    it('should clear products', () => {
+        const productOne = server.create('product')
+        const productTwo = server.create('product')
+
+        manager.addProduct(productOne)
+        manager.addProduct(productTwo)
+        const state = manager.clearProducts()
+
+        expect(state.items).toHaveLength(0)
+
+    })
 
     it.todo('should clear cart')
 
