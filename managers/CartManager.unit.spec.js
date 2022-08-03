@@ -1,5 +1,16 @@
+// CartManager
+import {
+    CartManager
+} from '@/managers/CartManager'
+
+
 describe('CartManager', () => {
-    it.todo('should return the state')
+    it('should return the state', () => {
+        const manager = new CartManager()
+        const state = manager.open()
+
+        expect(state.open).toBe(true)
+    })
 
     it.todo('should set cart to open')
 
