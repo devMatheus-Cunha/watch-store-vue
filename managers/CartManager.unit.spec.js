@@ -12,7 +12,12 @@ describe('CartManager', () => {
         expect(state.open).toBe(true)
     })
 
-    it.todo('should set cart to open')
+    it('should set cart to open', () => {
+        const manager = new CartManager()
+        const state = manager.close()
+
+        expect(state.open).toBe(false)
+    })
 
     it.todo('should set cart to closed')
 
