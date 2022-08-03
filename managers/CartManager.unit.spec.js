@@ -3,8 +3,26 @@ import {
     CartManager
 } from '@/managers/CartManager'
 
+// Services
+import {
+    makeServer
+} from '@/miragejs/server'
 
 describe('CartManager', () => {
+    let server
+    let manager
+
+    beforeEach(() => {
+        manager = new CartManager()
+        server = makeServer({
+            environment: 'test'
+        })
+    })
+
+    afterEach(() => {
+        server.shutdown()
+    })
+
     it('should set cart to open', () => {
         const manager = new CartManager()
         const state = manager.open()
@@ -19,7 +37,14 @@ describe('CartManager', () => {
         expect(state.open).toBe(false)
     })
 
-    it.todo('should add product to the cart only once')
+    it('should add product to the cart only once', () => {
+        const product = server.create('product')
+        const manager = new CartManager()
+        manager.addProduct(product)
+        const state = manager.addProduct(product)
+
+        expect(state.items).toHaveLength(1)
+    })
 
     it.todo('should remove product from the cart')
 
