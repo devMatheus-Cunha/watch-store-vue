@@ -5,21 +5,19 @@ import {
 
 
 describe('CartManager', () => {
-    it('should return the state', () => {
+    it('should set cart to open', () => {
         const manager = new CartManager()
         const state = manager.open()
 
         expect(state.open).toBe(true)
     })
 
-    it('should set cart to open', () => {
+    it('should set cart to closed', () => {
         const manager = new CartManager()
         const state = manager.close()
 
         expect(state.open).toBe(false)
     })
-
-    it.todo('should set cart to closed')
 
     it.todo('should add product to the cart only once')
 
