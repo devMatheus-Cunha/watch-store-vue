@@ -24,14 +24,12 @@ describe('CartManager', () => {
     })
 
     it('should set cart to open', () => {
-        const manager = new CartManager()
         const state = manager.open()
 
         expect(state.open).toBe(true)
     })
 
     it('should set cart to closed', () => {
-        const manager = new CartManager()
         const state = manager.close()
 
         expect(state.open).toBe(false)
@@ -39,7 +37,6 @@ describe('CartManager', () => {
 
     it('should add product to the cart only once', () => {
         const product = server.create('product')
-        const manager = new CartManager()
         manager.addProduct(product)
         const state = manager.addProduct(product)
 
