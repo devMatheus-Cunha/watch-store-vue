@@ -32,7 +32,10 @@
 </template>
 
 <script>
-import { cartState } from '@/state';
+import { CartManager } from '@/managers/CartManager';
+
+const cartManager = new CartManager();
+
 export default {
     name: 'ProductCard',
     props: {
@@ -43,8 +46,8 @@ export default {
     },
     methods: {
         addToCart() {
-            cartState.open = true;
-            cartState.items.push(this.product);
+            cartManager.open();
+            cartManager.addProduct(this.product);
         },
     },
 };
