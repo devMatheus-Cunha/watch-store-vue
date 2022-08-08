@@ -75,7 +75,29 @@ describe('CartManager', () => {
 
     })
 
+    it('should clear cart', () => {
+        const productOne = server.create('product')
+        const productTwo = server.create('product')
 
+        manager.addProduct(productOne)
+        manager.addProduct(productTwo)
+        manager.open()
+
+        const state = manager.clearCart()
+
+        expect(state.items).toHaveLength(0)
+        expect(state.open).toBe(false)
+    })
+
+    it('should return true if cart is not empty', () => {
+        const productOne = server.create('product')
+        const productTwo = server.create('product')
+
+        manager.addProduct(productOne)
+        manager.addProduct(productTwo)
+
+        expect(manager.hasProducts()).toBe(true)
+    })
 
     it('should return true if product is already in the cart', () => {
         const product = server.create('product')
