@@ -32,10 +32,6 @@
 </template>
 
 <script>
-import { CartManager } from '@/managers/CartManager';
-
-const cartManager = new CartManager();
-
 export default {
     name: 'ProductCard',
     props: {
@@ -46,8 +42,8 @@ export default {
     },
     methods: {
         addToCart() {
-            cartManager.open();
-            cartManager.addProduct(this.product);
+            this.$cart.open();
+            this.$cart.addProduct(this.product);
         },
     },
 };
