@@ -36,5 +36,16 @@ describe('Default Layout', () => {
         expect(wrapper.findComponent(Cart).exists()).toBe(true)
     })
 
-    it.todo('should toggle Cart visibility')
+    it('should toggle Cart visibility', async () => {
+        const {
+            wrapper
+        } = mountLayout()
+
+        const button = wrapper.find('[data-testid="toggle-button"]')
+
+        await button.trigger('click')
+        expect(wrapper.vm.isCartOpen).toBe(true)
+        await button.trigger('click')
+        expect(wrapper.vm.isCartOpen).toBe(false)
+    })
 })
