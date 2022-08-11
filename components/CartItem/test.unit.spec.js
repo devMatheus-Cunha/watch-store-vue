@@ -8,7 +8,13 @@ import {
     makeServer
 } from '@/miragejs/server'
 
+import {
+    CartManager
+} from '@/managers/CartManager'
+
 const mountCartItem = () => {
+    const cartManager = new CartManager()
+
     const product = server.create('product', {
         title: 'Lindo relogío',
         price: '22.33'
@@ -16,12 +22,16 @@ const mountCartItem = () => {
     const wrapper = mount(CartItem, {
         propsData: {
             product
-        }
+        },
+        mocks: {
+            $cart: cartManager,
+        },
     })
 
     return {
         product,
-        wrapper
+        wrapper,
+        cartManager
     }
 }
 
@@ -108,4 +118,16 @@ describe('CartItem', () => {
         await button.trigger('click')
         expect(quantity.text()).toContain('0')
     });
+
+    it('should display a button ot remove item from cart', async () => {
+        const {
+            wrapper,
+            cartManager
+        } = mountCartItem()
+        const button = wrapper.find('[data-testid="remove-button"]')
+
+        expect(button.exists()).toBe(true)
+    });
+
+
 });
