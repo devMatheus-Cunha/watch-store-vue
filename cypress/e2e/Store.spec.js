@@ -23,9 +23,28 @@ context('Store', () => {
         cy.get('body').contains('Wrist Watch')
     });
 
-    it('should display "10 Products" when 10 products are returned', () => {
-        server.createList('product', 10)
-        cy.visit('/')
+    context('Store > Search for Products', () => {
+        it('should type in the search field', () => {
+            cy.visit("http://localhost:3000")
 
+            cy.get('input[type="search"]')
+                .type('Some text here')
+                .should('have.value', 'Some text here')
+        });
+
+        it('should type in the search field', () => {
+            server.create('product', {
+                title: 'Relógio bonito'
+            })
+            server.createList('product', 10)
+
+            cy.visit("http://localhost:3000")
+
+            cy.get('input[type="search"]').type('Relógio bonito')
+
+            cy.get('[data-testid="search-form"]').submit()
+
+            cy.get('[data-testid="product-card"]').should('have.length', 1)
+        });
     })
 })
