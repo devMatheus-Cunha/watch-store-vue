@@ -24,12 +24,8 @@ context('Store', () => {
     });
 
     it('should display "10 Products" when 10 products are returned', () => {
-        server.createList('product', 2)
+        server.createList('product', 10)
+        cy.visit('/')
 
-        cy.visit("http://localhost:3000")
-
-        // cy.getByTestId('product-card').should('have.length', 10)
-        // cy.get('body').contains('10 Products')
     })
-
 })
