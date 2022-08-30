@@ -53,6 +53,12 @@ context('Store', () => {
             getId('shopping-cart').should('not.have.class', 'hidden')
         });
 
+        it('should add first product to the cart', () => {
+            getId("product-card").first().find('button').click()
+
+            getId('cart-item').should('have.length', 1)
+        });
+
     })
 
     context('Store > Product List', () => {
