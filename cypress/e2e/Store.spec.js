@@ -23,6 +23,28 @@ context('Store', () => {
         cy.get('body').contains('Wrist Watch')
     });
 
+    context.only('Store > Shopping Cart', () => {
+        it('should not display shopping car when page first loads', () => {
+            cy.visit('/')
+
+            cy.get('[data-testid="shopping-cart"]').should('have.class', 'hidden')
+        });
+
+        it('should toggle shopping cart visibility when button is clicked', () => {
+            cy.visit('/')
+
+            cy.get('[data-testid="toggle-button"]').as('toggleButton')
+
+            cy.get('@toggleButton').click()
+            cy.get('[data-testid="shopping-cart"]').should('not.have.class', 'hidden')
+
+            cy.get('@toggleButton').click({
+                force: true
+            })
+            cy.get('[data-testid="shopping-cart"]').should('have.class', 'hidden')
+        });
+    })
+
     context('Store > Product List', () => {
         it('should display "0 Products" when no product is returned ', () => {
             cy.visit('/')
