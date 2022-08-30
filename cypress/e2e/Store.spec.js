@@ -46,6 +46,13 @@ context('Store', () => {
             })
             getId("shopping-cart").should('have.class', 'hidden')
         });
+
+        it('should open shopping cart when a product is added', () => {
+            getId("product-card").first().find('button').click()
+
+            getId('shopping-cart').should('not.have.class', 'hidden')
+        });
+
     })
 
     context('Store > Product List', () => {
