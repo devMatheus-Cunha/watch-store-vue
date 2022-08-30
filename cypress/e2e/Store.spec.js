@@ -4,6 +4,7 @@ import {
 
 context('Store', () => {
     let server
+    const g = cy.get
 
     beforeEach(() => {
         server = makeServer({
@@ -19,29 +20,29 @@ context('Store', () => {
     it('should display the store', () => {
         cy.visit('/')
 
-        cy.get('body').contains('Brand')
-        cy.get('body').contains('Wrist Watch')
+        g('body').contains('Brand')
+        g('body').contains('Wrist Watch')
     });
 
-    context.only('Store > Shopping Cart', () => {
+    context('Store > Shopping Cart', () => {
         it('should not display shopping car when page first loads', () => {
             cy.visit('/')
 
-            cy.get('[data-testid="shopping-cart"]').should('have.class', 'hidden')
+            g('[data-testid="shopping-cart"]').should('have.class', 'hidden')
         });
 
         it('should toggle shopping cart visibility when button is clicked', () => {
             cy.visit('/')
 
-            cy.get('[data-testid="toggle-button"]').as('toggleButton')
+            g('[data-testid="toggle-button"]').as('toggleButton')
 
-            cy.get('@toggleButton').click()
-            cy.get('[data-testid="shopping-cart"]').should('not.have.class', 'hidden')
+            g('@toggleButton').click()
+            g('[data-testid="shopping-cart"]').should('not.have.class', 'hidden')
 
-            cy.get('@toggleButton').click({
+            g('@toggleButton').click({
                 force: true
             })
-            cy.get('[data-testid="shopping-cart"]').should('have.class', 'hidden')
+            g('[data-testid="shopping-cart"]').should('have.class', 'hidden')
         });
     })
 
@@ -49,8 +50,8 @@ context('Store', () => {
         it('should display "0 Products" when no product is returned ', () => {
             cy.visit('/')
 
-            cy.get('[data-testid="product-card"]').should('have.length', 0)
-            cy.get('body').contains('0 Products')
+            g('[data-testid="product-card"]').should('have.length', 0)
+            g('body').contains('0 Products')
         });
 
         it('should display "1 Products" when 1 product is returned ', () => {
@@ -58,8 +59,8 @@ context('Store', () => {
 
             cy.visit('/')
 
-            cy.get('[data-testid="product-card"]').should('have.length', 1)
-            cy.get('body').contains('1 Product')
+            g('[data-testid="product-card"]').should('have.length', 1)
+            g('body').contains('1 Product')
         });
 
         it('should display "10 Products" when 10 product are returned ', () => {
@@ -67,8 +68,8 @@ context('Store', () => {
 
             cy.visit('/')
 
-            cy.get('[data-testid="product-card"]').should('have.length', 10)
-            cy.get('body').contains('10 Products')
+            g('[data-testid="product-card"]').should('have.length', 10)
+            g('body').contains('10 Products')
         });
     })
 
@@ -76,7 +77,7 @@ context('Store', () => {
         it('should type in the search field', () => {
             cy.visit('/')
 
-            cy.get('input[type="search"]')
+            g('input[type="search"]')
                 .type('Some text here')
                 .should('have.value', 'Some text here')
         });
@@ -88,19 +89,19 @@ context('Store', () => {
             server.createList('product', 10)
 
             cy.visit('/')
-            cy.get('input[type="search"]').type('Relógio bonito')
-            cy.get('[data-testid="search-form"]').submit()
-            cy.get('[data-testid="product-card"]').should('have.length', 1)
+            g('input[type="search"]').type('Relógio bonito')
+            g('[data-testid="search-form"]').submit()
+            g('[data-testid="product-card"]').should('have.length', 1)
         });
 
         it('should not return any product', () => {
             server.createList('product', 10)
 
             cy.visit('/')
-            cy.get('input[type="search"]').type('Relógio bonito')
-            cy.get('[data-testid="search-form"]').submit()
-            cy.get('[data-testid="product-card"]').should('have.length', 0)
-            cy.get('body').contains('0 Products')
+            g('input[type="search"]').type('Relógio bonito')
+            g('[data-testid="search-form"]').submit()
+            g('[data-testid="product-card"]').should('have.length', 0)
+            g('body').contains('0 Products')
 
         });
     })
