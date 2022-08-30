@@ -59,7 +59,7 @@ context('Store', () => {
             getId('cart-item').should('have.length', 1)
         });
 
-        it.only('should add 3 products to the cart', () => {
+        it('should add 3 products to the cart', () => {
             getId("product-card").eq(1).find('button').click()
             getId("product-card").eq(3).find('button').click({
                 force: true
