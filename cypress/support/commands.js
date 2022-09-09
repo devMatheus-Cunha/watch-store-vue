@@ -38,7 +38,7 @@ Cypress.Commands.add('addToCart', (mode) => {
         })
 
     const addByIndex = () => {
-
+        click(mode.index)
     }
 
     const addByIndexes = () => {
