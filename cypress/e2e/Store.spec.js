@@ -64,6 +64,18 @@ context('Store', () => {
 
             getId('cart-item').should('have.length', 3)
         });
+
+        it.only('should add 1 product to the cart', () => {
+            cy.addToCart(6)
+
+            getId('cart-item').should('have.length', 1)
+        });
+
+        it.only('should add all products to the cart', () => {
+            cy.addToCart('all')
+            getId('cart-item').should('have.length', 10)
+        });
+
     })
 
     context('Store > Product List', () => {
