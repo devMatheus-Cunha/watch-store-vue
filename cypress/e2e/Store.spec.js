@@ -25,7 +25,7 @@ context('Store', () => {
         get('body').contains('Wrist Watch')
     });
 
-    context.only('Store > Shopping Cart', () => {
+    context('Store > Shopping Cart', () => {
         beforeEach(() => {
             server.createList('product', 10)
             cy.visit('/')
@@ -59,18 +59,11 @@ context('Store', () => {
             getId('cart-item').should('have.length', 1)
         });
 
-        it('should add 3 products to the cart', () => {
-            getId("product-card").eq(1).find('button').click()
-            getId("product-card").eq(3).find('button').click({
-                force: true
-            })
-            getId("product-card").eq(5).find('button').click({
-                force: true
-            })
+        it.only('should add 3 products to the cart', () => {
+            cy.addToCart([1, 3, 5])
 
             getId('cart-item').should('have.length', 3)
         });
-
     })
 
     context('Store > Product List', () => {
