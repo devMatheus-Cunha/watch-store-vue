@@ -25,9 +25,10 @@ context('Store', () => {
         get('body').contains('Wrist Watch')
     });
 
-    context('Store > Shopping Cart', () => {
+    context.only('Store > Shopping Cart', () => {
+        const quantity = 10
         beforeEach(() => {
-            server.createList('product', 10)
+            server.createList('product', quantity)
             cy.visit('/')
         })
 
@@ -59,21 +60,19 @@ context('Store', () => {
             getId('cart-item').should('have.length', 1)
         });
 
-        it.only('should add 3 products to the cart', () => {
+        it('should add 3 products to the cart', () => {
             cy.addToCart([1, 3, 5])
-
             getId('cart-item').should('have.length', 3)
         });
 
-        it.only('should add 1 product to the cart', () => {
+        it('should add 1 product to the cart', () => {
             cy.addToCart(6)
-
             getId('cart-item').should('have.length', 1)
         });
 
-        it.only('should add all products to the cart', () => {
+        it('should add all products to the cart', () => {
             cy.addToCart('all')
-            getId('cart-item').should('have.length', 10)
+            getId('cart-item').should('have.length', quantity)
         });
 
     })
