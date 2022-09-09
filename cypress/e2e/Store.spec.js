@@ -60,18 +60,24 @@ context('Store', () => {
             getId('cart-item').should('have.length', 1)
         });
 
-        it('should add 3 products to the cart', () => {
-            cy.addToCart([1, 3, 5])
+        it.only('should add 3 products to the cart', () => {
+            cy.addToCart({
+                indexes: [1, 4, 6]
+            })
             getId('cart-item').should('have.length', 3)
         });
 
-        it('should add 1 product to the cart', () => {
-            cy.addToCart(6)
+        it.only('should add 1 product to the cart', () => {
+            cy.addToCart({
+                index: 6
+            })
             getId('cart-item').should('have.length', 1)
         });
 
-        it('should add all products to the cart', () => {
-            cy.addToCart('all')
+        it.only('should add all products to the cart', () => {
+            cy.addToCart({
+                indexes: 'all'
+            })
             getId('cart-item').should('have.length', quantity)
         });
 
