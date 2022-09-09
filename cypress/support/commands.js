@@ -48,7 +48,13 @@ Cypress.Commands.add('addToCart', (mode) => {
     }
 
     const addAll = () => {
-
+        cy.get('@productCards').then(($elements) => {
+            let i = 0
+            while (i < $elements.length) {
+                click(i)
+                i++
+            }
+        })
     }
 
     if (Array.isArray(mode)) {
