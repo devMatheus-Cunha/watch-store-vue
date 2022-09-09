@@ -25,7 +25,7 @@ context('Store', () => {
         get('body').contains('Wrist Watch')
     });
 
-    context.only('Store > Shopping Cart', () => {
+    context('Store > Shopping Cart', () => {
         const quantity = 10
         beforeEach(() => {
             server.createList('product', quantity)
