@@ -58,6 +58,11 @@ context('Store', () => {
             )
         })
 
+        it('should display "Cart is empty" message when there are no products', () => {
+            cy.getByTestId('toggle-button').as('toggleButton')
+            cy.get('@toggleButton').click()
+            cy.getByTestId('shopping-cart').contains('Cart is empty')
+        })
 
         it('should open shopping cart when a product is added', () => {
             getId("product-card").first().find('button').click()
