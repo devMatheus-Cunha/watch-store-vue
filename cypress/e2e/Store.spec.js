@@ -97,6 +97,15 @@ context('Store', () => {
             getId('cart-item').should('have.length', quantity)
         });
 
+        it('should display quantity 1 when product is added to cart', () => {
+            cy.addToCart({
+                index: 1
+            })
+
+            cy.getByTestId('quantity').contains(1)
+        })
+
+
         it('should remove a product from cart', () => {
             cy.addToCart({
                 index: 2
