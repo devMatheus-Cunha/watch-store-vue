@@ -48,6 +48,17 @@ context('Store', () => {
             getId("shopping-cart").should('have.class', 'hidden')
         });
 
+        it('should not display "Clear cart" button when cart is empty', () => {
+            getId('toggle-button').as('toggleButton')
+            get('@toggleButton').click()
+
+            getId('shopping-cart').should(
+                'not.include.text',
+                'Clear cart'
+            )
+        })
+
+
         it('should open shopping cart when a product is added', () => {
             getId("product-card").first().find('button').click()
 
