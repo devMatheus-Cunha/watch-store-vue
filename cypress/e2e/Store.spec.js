@@ -109,6 +109,16 @@ context('Store', () => {
             get('@cartItems').should('have.length', 0)
         })
 
+        it('should clear cart when "Clear cart" button is clicked', () => {
+            cy.addToCart({
+                indexes: [1, 2, 3]
+            })
+
+            cy.getByTestId('cart-item').should('have.length', 3)
+            cy.getByTestId('clear-cart-button').click()
+            cy.getByTestId('cart-item').should('have.length', 0)
+        })
+
     })
 
     context('Store > Product List', () => {
