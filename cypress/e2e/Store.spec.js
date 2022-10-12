@@ -60,26 +60,43 @@ context('Store', () => {
             getId('cart-item').should('have.length', 1)
         });
 
-        it.only('should add 3 products to the cart', () => {
+        it('should add 3 products to the cart', () => {
             cy.addToCart({
                 indexes: [1, 4, 6]
             })
             getId('cart-item').should('have.length', 3)
         });
 
-        it.only('should add 1 product to the cart', () => {
+        it('should add 1 product to the cart', () => {
             cy.addToCart({
                 index: 6
             })
             getId('cart-item').should('have.length', 1)
         });
 
-        it.only('should add all products to the cart', () => {
+        it('should add all products to the cart', () => {
             cy.addToCart({
                 indexes: 'all'
             })
             getId('cart-item').should('have.length', quantity)
         });
+
+        it('should remove a product from cart', () => {
+            cy.addToCart({
+                index: 2
+            })
+
+            getId('cart-item').as('cartItems')
+
+            get('@cartItems').should('have.length', 1)
+
+            get('@cartItems')
+                .first()
+                .find('[data-testid="remove-button"]')
+                .click()
+
+            get('@cartItems').should('have.length', 0)
+        })
 
     })
 
